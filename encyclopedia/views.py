@@ -3,6 +3,7 @@ from django.shortcuts import render
 from markdown2 import markdown
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+import os
 
 from . import util
 
@@ -121,4 +122,11 @@ def edit(request, name):
             "content": content
         })
 
+def remove(request):
+    if request.method == "POST":
+        title = request.POST["re"]
+        
+        # remove the file from storage
+        os.remove(f"entries/{title}.md")
 
+        return HttpResponseRedirect(reverse("encyclopedia:index"))
