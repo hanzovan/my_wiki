@@ -9,7 +9,7 @@
         <li><a href="{% url 'encyclopedia:entry' entry_name=match %}">{{ match }}</a></li>
 
         {% empty %}
-
+        <h1>Error</h1>
         <li>No matched!!!</li>
 
         {% endfor %}
