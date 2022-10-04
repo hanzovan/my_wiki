@@ -4,6 +4,7 @@ from markdown2 import markdown
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 import os
+from random import choice
 
 from . import util
 
@@ -130,3 +131,15 @@ def remove(request):
         os.remove(f"entries/{title}.md")
 
         return HttpResponseRedirect(reverse("encyclopedia:index"))
+
+def rando(request):
+    choices = util.list_entries()
+    chosen = choice(choices)
+
+    content = util.get_entry(chosen)
+
+    # render the entry
+    return render(request, "encyclopedia/entry.html", {
+        "title": chosen,
+        "content": markdown(content)
+    })
