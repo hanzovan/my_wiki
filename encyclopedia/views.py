@@ -1,5 +1,8 @@
+from email.headerregistry import ContentTypeHeader
 from django.shortcuts import render
 from markdown2 import markdown
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 from . import util
 
@@ -23,6 +26,99 @@ def entry(request, entry_name):
         content = markdown(entry)
 
         return render(request, "encyclopedia/entry.html", {
-            "entry": entry_name,
+            "title": entry_name,
             "content": content
         })
+
+def search(request):
+
+    query = request.POST["q"]
+
+    result = util.get_entry(query)
+
+    if not result:
+
+        entries = util.list_entries()
+        match = []
+
+        for entry in entries:
+            if query.lower() in entry.lower():
+                match.append(entry)
+
+        return render(request, "encyclopedia/search.html", {
+            "query": query,
+            "matchs": match
+        })
+
+    else:
+        return render(request, "encyclopedia/entry.html", {
+            "title": query,
+            "content": markdown(result)
+        })
+
+
+def new(request):
+
+    # if user reached route by submiting form
+    if request.method == "POST":
+        title = request.POST["title"]
+
+        # if title already existed, show error message
+        if util.get_entry(title) is not None:
+            return render(request, "encyclopedia/error.html", {
+                "message": "This title is already existed!!!"
+            })
+        
+        # if title doesn't exist, save new file
+        else:
+
+
+            content = request.POST["content"]
+            file = open(f"entries/{title}.md", "w")
+            file.write(content)
+            file.close()
+
+            # Get entry from storage
+
+            new_content = util.get_entry(title)      
+        
+            # Redirect user to the new entry
+            return render(request, "encyclopedia/entry.html", {
+                "title": title,
+                "content": markdown(new_content)
+            })
+
+    # if user reached route via clicking link, show the form
+    else:
+        return render(request, "encyclopedia/new.html")
+
+
+def edit(request, name):
+
+    # if user reached route by submiting form:
+    if request.method == "POST":
+        content = request.POST["detail"]
+        file = open(f"entries/{name}.md", "w")
+        file.write(content)
+        file.close()
+
+        # redirect user to the entry
+        new_content = util.get_entry(name)
+
+        return render(request, "encyclopedia/entry.html", {
+            "title": name,
+            "content": markdown(new_content)
+        })
+
+    # if user reached route by clicking link:
+    else:
+
+        # Get the content from name
+        content = util.get_entry(name)
+
+        return render(request, "encyclopedia/edit.html", {
+            "title": name,
+            "content": content
+        })
+
+

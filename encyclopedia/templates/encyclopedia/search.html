@@ -1,0 +1,19 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block body %}
+
+    <h2>Result for "{{ query }}"</h2>
+    <ul>
+        {% for match in matchs %}
+
+        <li><a href="{% url 'encyclopedia:entry' entry_name=match %}">{{ match }}</a></li>
+
+        {% empty %}
+
+        <li>No matched!!!</li>
+
+        {% endfor %}
+    </ul>
+    
+
+{% endblock %}

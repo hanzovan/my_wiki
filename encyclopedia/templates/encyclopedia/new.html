@@ -1,0 +1,13 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block body %}
+
+    This is new
+    <form action="{% url 'encyclopedia:new' %}" method="post">
+        {% csrf_token %}
+        <input autocomplete="off" autofocus name="title" type="text">
+        <textarea name="content">abc</textarea>
+        <button>Add new entry</button>
+    </form>
+
+{% endblock %}
