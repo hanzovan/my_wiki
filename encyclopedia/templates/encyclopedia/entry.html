@@ -1,15 +1,15 @@
 {% extends "encyclopedia/layout.html" %}
 {% block body %}
     
-    {{ content|safe }}
+    <p>{{ content|safe }}</p>
 
     <!-- use anchor to redirect user to the form, 
         with the value of "title" to the "name" argument in "edit" function
     in href url, the title value don't need { } sign around the "title", but the normal part do need -->
-    <a href="{% url 'encyclopedia:edit' name=title %}">Edit {{ title }}</a>
+    
+    <div class="link"><a href="{% url 'encyclopedia:edit' name=title %}">Edit entry</a></div>
 
-
-    <form action="{% url 'encyclopedia:remove' %}" method="post">
+    <form onsubmit="return confirm('IMPORTANT!!! Do you really want to DELETE {{ title }}? ');" class="delete" action="{% url 'encyclopedia:remove' %}" method="post">
         {% csrf_token %}
 
         <!-- to give the value of title to input value, we need {} sign -->

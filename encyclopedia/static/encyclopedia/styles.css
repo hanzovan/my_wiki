@@ -6,7 +6,7 @@ h1 {
 body {
   margin: 0;
   background-color: white;
-  color: purple; }
+  color: brown; }
 
 code {
   white-space: pre; }
@@ -14,7 +14,7 @@ code {
 h1 {
   margin-top: 0px;
   padding-top: 20px;
-  color: blue; }
+  color: orange; }
 
 textarea {
   height: 90vh;
@@ -35,5 +35,15 @@ textarea {
 
 .sidebar h2 {
   margin-top: 5px; }
+
+.link, .delete {
+  margin: 50px 0 200px 0; }
+
+.delete {
+  margin-left: 200px; }
+
+a {
+  font-style: italic;
+  color: blue; }
 
 /*# sourceMappingURL=styles.css.map */

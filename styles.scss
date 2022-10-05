@@ -1,5 +1,5 @@
-$normal-color: purple;
-$big-font-color: blue;
+$normal-color: brown;
+$big-font-color: orange;
 
 %normal-font {
     font-family: sans-serif;
@@ -54,4 +54,14 @@ textarea {
 
 .sidebar h2 {
     margin-top: 5px;
+}
+.link, .delete {
+    margin: 50px 0 200px 0;
+}
+.delete {
+    margin-left: 200px;
+}
+a {
+    font-style: italic;
+    color: blue;
 }
