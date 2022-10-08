@@ -4,6 +4,7 @@
     <form action="{% url 'encyclopedia:edit' name=title %}" method="post">
         {% csrf_token %}
         
+        <input type="text" autocomplete="off" name="title" value="{{ title }}">
         <textarea name="detail" autocomplete="off">{{ content }}</textarea>
         <button>Confirm change</button>
     </form>

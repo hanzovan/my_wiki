@@ -99,16 +99,21 @@ def edit(request, name):
 
     # if user reached route by submiting form:
     if request.method == "POST":
+
+        # remove the old file
+        os.remove(f"entries/{name}.md")
+
         content = request.POST["detail"]
-        file = open(f"entries/{name}.md", "w")
+        title = request.POST["title"]
+        file = open(f"entries/{title}.md", "w")
         file.write(content)
-        file.close()
+        file.close()        
 
         # redirect user to the entry
-        new_content = util.get_entry(name)
+        new_content = util.get_entry(title)
 
         return render(request, "encyclopedia/entry.html", {
-            "title": name,
+            "title": title,
             "content": markdown(new_content)
         })
 
