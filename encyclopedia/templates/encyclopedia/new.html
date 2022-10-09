@@ -2,11 +2,23 @@
 
 {% block body %}
 
-    <form action="{% url 'encyclopedia:new' %}" method="post">
-        {% csrf_token %}
-        <input autocomplete="off" autofocus name="title" type="text">
-        <textarea name="content"></textarea>
-        <button>Add new entry</button>
-    </form>
+    <div class="wholepage-form">
+        <form action="{% url 'encyclopedia:new' %}" method="post">
+            {% csrf_token %}
+            <div class="input-line">
+                <div class="input-left">
+                    <p>Title</p>
+                </div>
+                <input class="input" autocomplete="off" autofocus name="title" type="text">
+            </div>
+            <div class="area">
+                <p>Details</p>            
+                <textarea class="input-area" name="content"></textarea>
+            </div>
+            
+            <button class="normal-btn">Add new entry</button>
+        </form>
+    </div>
+    
 
 {% endblock %}
