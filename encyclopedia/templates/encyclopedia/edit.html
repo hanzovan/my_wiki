@@ -1,12 +1,21 @@
 {% extends "encyclopedia/layout.html" %}
 {% block body %}
 
-    <form action="{% url 'encyclopedia:edit' name=title %}" method="post">
-        {% csrf_token %}
-        
-        <input type="text" autocomplete="off" name="title" value="{{ title }}">
-        <textarea name="detail" autocomplete="off">{{ content }}</textarea>
-        <button>Confirm change</button>
-    </form>
+    <div class="wholepage-form">
+        <form action="{% url 'encyclopedia:edit' name=title %}" method="post">
+            {% csrf_token %}
+            <div class="input-line">
+                <p>Title</p>
+                <input class="input" type="text" autocomplete="off" name="title" value="{{ title }}">
+            </div>
+            <div class="area">
+                <p>Details</p>
+                <textarea class="input-area" name="detail" autocomplete="off">{{ content }}</textarea>
+            </div>
+            
+            <button class="normal-btn">Confirm change</button>
+        </form>
+    </div>
+    
 
 {% endblock %}

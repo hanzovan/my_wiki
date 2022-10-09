@@ -32,8 +32,11 @@ h1 {
 }
 
 textarea {
-    height: 90vh;
+    height: 60vh;
     width: 80%;
+    border-radius: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .main {
@@ -64,4 +67,7 @@ textarea {
 a {
     font-style: italic;
     color: blue;
+}
+.input, .input-area {
+    margin-bottom: 30px;    
 }

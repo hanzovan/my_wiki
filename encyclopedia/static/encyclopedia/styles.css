@@ -17,8 +17,11 @@ h1 {
   color: orange; }
 
 textarea {
-  height: 90vh;
-  width: 80%; }
+  height: 60vh;
+  width: 80%;
+  border-radius: 5px;
+  padding-left: 10px;
+  padding-right: 10px; }
 
 .main {
   padding: 10px; }
@@ -45,5 +48,8 @@ textarea {
 a {
   font-style: italic;
   color: blue; }
+
+.input, .input-area {
+  margin-bottom: 30px; }
 
 /*# sourceMappingURL=styles.css.map */
