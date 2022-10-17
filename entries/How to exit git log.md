@@ -1,2 +1,2 @@
 # How to ***exit git log***
-Press Q
+*Just press* **Q**

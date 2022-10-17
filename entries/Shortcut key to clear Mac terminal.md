@@ -1,2 +1,2 @@
 # Shortcut key to clear Mac terminal
-CMD + K
+*Just press* **K** *while holding* **Command**

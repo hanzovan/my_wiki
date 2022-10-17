@@ -1,2 +1,2 @@
 # Shortcut key to exit python shell in Mac terminal
-Ctrl + D
+*Just press* **D** *while holding* **Control**
